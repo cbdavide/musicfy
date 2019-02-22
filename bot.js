@@ -18,6 +18,7 @@ class MyBot {
                 1 - Recommend a similar artist (recommend) (artistName | mood)
                 2 - Get information artist (info) (artistName)
                 3 - Buy a song (buy)  (nameSong)
+                4 - Best albums of an artist (bestof) (artistName)
                 `
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         if (turnContext.activity.type === ActivityTypes.Message) {
@@ -38,6 +39,9 @@ class MyBot {
               await turnContext.sendActivity("This is the information of "+type)
           }else if( opt[0] == "buy"){
               await turnContext.sendActivity("You can buy the song "+type+" following this link")
+          }
+          else if( opt[0] == "bestof"){
+              await turnContext.sendActivity("The best song of  "+type+" are: ")
           }
         } else {
             var opt  = turnContext.activity.type;
