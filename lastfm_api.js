@@ -54,10 +54,3 @@ function best_of(name) {
 
 exports.best_of = best_of;
 exports.recommentadion = recommentadion;
-best_of('asdlknas')
-    .then(data => {
-        console.log(data)
-    })
-    .catch(err => {
-        console.log('Fuck')
-    })

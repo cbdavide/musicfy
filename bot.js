@@ -3,7 +3,7 @@
 
 const { ActivityTypes } = require('botbuilder');
 
-const { recommentadion } = require('./lastfm_api')
+const { recommentadion, best_of } = require('./lastfm_api')
 
 class MyBot {
     /**
@@ -41,7 +41,14 @@ class MyBot {
               await turnContext.sendActivity("You can buy the song "+type+" following this link")
           }
           else if( opt[0] == "bestof"){
-              await turnContext.sendActivity("The best song of  "+type+" are: ")
+              try {
+                  let data = await best_of(type)
+                  await turnContext.sendActivity("The best album of  " + type + " is: " + data.name)
+                  await turnContext.sendActivity("You can know more about " + data.name + " here: " +  data.url)
+                  
+              } catch(erro) {
+                  await turnContext.sendActivity("Sorry we couldn't find anything.")
+              }
           }
         } else {
             var opt  = turnContext.activity.type;
