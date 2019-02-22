@@ -24,11 +24,11 @@ class MyBot {
           var type= opt[1]
           if( opt[0] == "recommend"){
             // request type
-              await turnContext.sendActivity("We recomend you to hear this song")
+              await turnContext.sendActivity("We recomend you to hear this song related to "+type)
           }else if( opt[0] =="info"){
-              await turnContext.sendActivity("This is the information of the artist")
+              await turnContext.sendActivity("This is the information of "+type)
           }else if( opt[0] == "buy"){
-              await turnContext.sendActivity("You can buy the song following this link")
+              await turnContext.sendActivity("You can buy the song "+type+" following this link")
           }
         } else {
             var opt  = turnContext.activity.type;
