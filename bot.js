@@ -3,6 +3,8 @@
 
 const { ActivityTypes } = require('botbuilder');
 
+const { recommentadion } = require('./lastfm_api')
+
 class MyBot {
     /**
      *
@@ -13,7 +15,7 @@ class MyBot {
 
       var msg = `Hello User, Welcome to Musicfy,
                 please select one of the following options ( type the word )
-                1 - Recommend a song (recommend) (artistName | mood)
+                1 - Recommend a similar artist (recommend) (artistName | mood)
                 2 - Get information artist (info) (artistName)
                 3 - Buy a song (buy)  (nameSong)
                 `
@@ -24,7 +26,9 @@ class MyBot {
           var type= opt[1]
           if( opt[0] == "recommend"){
             // request type
-              await turnContext.sendActivity("We recomend you to hear this song related to "+type)
+              let data = await recommentadion(type)
+              await turnContext.sendActivity("We have found a similar artist to " + type + ": " + data.name)
+              await turnContext.sendActivity("You can know more about " + data.name + " here: " +  data.url)
           }else if( opt[0] =="info"){
               await turnContext.sendActivity("This is the information of "+type)
           }else if( opt[0] == "buy"){
