@@ -1,15 +1,18 @@
 {
     "name": "musicfy",
+    "description": "",
     "services": [
         {
             "type": "endpoint",
             "name": "development",
-            "endpoint": "http://localhost:3978/api/messages",
+            "endpoint": "http://localhost:3978/api/musicfy",
             "appId": "",
             "appPassword": "",
             "id": "1"
         }
     ],
     "padlock": "",
-    "version": "2.0"
+    "version": "2.0",
+    "path": "/home/cbdavide/Documents/proyects/bot/musicfy/musicfy.bot",
+    "overrides": null
 }
