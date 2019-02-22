@@ -26,9 +26,14 @@ class MyBot {
           var type= opt[1]
           if( opt[0] == "recommend"){
             // request type
-              let data = await recommentadion(type)
-              await turnContext.sendActivity("We have found a similar artist to " + type + ": " + data.name)
-              await turnContext.sendActivity("You can know more about " + data.name + " here: " +  data.url)
+            try {
+                let data = await recommentadion(type)
+                await turnContext.sendActivity("We have found a similar artist to " + type + ": " + data.name)
+                await turnContext.sendActivity("You can know more about " + data.name + " here: " +  data.url)
+            } catch(erro) {
+                await turnContext.sendActivity("Sorry we couldn't find anything.")
+            }
+
           }else if( opt[0] =="info"){
               await turnContext.sendActivity("This is the information of "+type)
           }else if( opt[0] == "buy"){

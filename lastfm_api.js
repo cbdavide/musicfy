@@ -31,4 +31,33 @@ function recommentadion(name) {
         })
 }
 
+function best_of(name) {
+    var options = {
+        uri: LAST_FM_API,
+        qs: {
+            method: 'artist.gettopalbums',
+            artist: name,
+            api_key: LAST_FM_KEY,
+            format: 'json'
+        },
+        json: true
+    };
+    return request(options)
+        .then(data => {
+            let top_albums = data.topalbums.album[0];
+            let {name, url} = top_albums;
+
+            let response = {name: name, url: url}
+            return Promise.resolve(response)
+        })
+}
+
+exports.best_of = best_of;
 exports.recommentadion = recommentadion;
+best_of('asdlknas')
+    .then(data => {
+        console.log(data)
+    })
+    .catch(err => {
+        console.log('Fuck')
+    })
